@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
 import NewsItem from './NewsItem';
-import './App.css';
+import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import './App.css';
 
 class App extends Component {
 
@@ -9,23 +9,23 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      // url : 'http://newsapi.org/v2/everything?' +
-      // 'q=Apple&' +
-      // 'from=2021-12-15&' +
-      // 'sortBy=popularity&' +
-      // 'apiKey=a939f33eb3d94a36acd4ccb59fdc33a9' ,
-      url: 'https://jsonplaceholder.typicode.com/posts',
+      url : 'http://newsapi.org/v2/everything?' +
+      'q=Apple&' +
+      'from=2021-12-15&' +
+      'sortBy=popularity&' +
+      'apiKey=6ddd575efb6d48d9a544c261a9feb2d5' ,
+      // url: 'https://jsonplaceholder.typicode.com/posts',
       isLoaded : false,
       articles  : []
      }
   }
 componentDidMount(){
-  // var req = new Request(this.state.url);
-  var req = this.state.url
+  var req = new Request(this.state.url);
+  // var req = this.state.url
   fetch(req)
   .then(response => response.json())
   .then(json => this.setState({
-    articles: json ,
+    articles: json.articles ,
     isLoaded : true
   }))
 } 
@@ -35,20 +35,21 @@ componentDidMount(){
       <div className="App">
           <div>
             <h1>News</h1>
-              {/* if (this.state.isLoaded)  */}
-              {
+            <div className="newsC">
+                            {
 
                 this.state.articles.map((a) =>
                     <NewsItem 
                       key = {uuidv4()}
-                      // urlToImage = {a.urlToImage}
+                      urlToImage = {a.urlToImage}
                       title = {a.title}
-                      // description = {a.body}
-                      // publishedAt = {a.publishedAt}
-                      // url = {a.url}
+                      description = {a.body}
+                      publishedAt = {a.publishedAt}
+                      url = {a.url}
                     />
                   )
-              }
+                }
+            </div>
           </div>
   </div> );
     }

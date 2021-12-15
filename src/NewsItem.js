@@ -1,7 +1,7 @@
 const NewsItem = (props) => {
     return ( 
         <div className="NewsItem">
-            <img urlToImage={props.urlToImage} alt="img" />
+            <img src={props.urlToImage} alt="img" />
             <h4>{props.title}</h4>
             <p>{props.description}</p>
             <p>{props.publishedAt}</p>
